@@ -1,37 +1,22 @@
 # coding: utf-8
-import xlrd
-import numpy as np
+
+from lib import io
+
 
 # input vars
 filename = 'data/pugachev.xls'
-start_row = 6
-start_col = 2
-width = 2
-height = 4
+start_cell = 'B6'
+end_cell = 'D11'
+sheet_index = 0
+result_start_cell = 'B1478'
 
-# local vars
-start_row -= 1
-start_col -= 1
-end_row = start_row + height
-end_col = start_col + width
-matrix = []
 
 # program
-rb = xlrd.open_workbook(filename)
-sheet = rb.sheet_by_index(0)
+if __name__ == "__main__":
+    e_mgr = io.ExcelManager()
+    e_mgr.open(filename, sheet_index)
+    matrix = e_mgr.get_array(start_cell, end_cell)
+    matrix_m = matrix * matrix.T
 
-for row_num in range(start_row, start_row + height):
-    row = sheet.row_values(row_num)
-
-    curr = []
-    for i in range(start_col, start_col + width):
-        curr.append(int(row[i]))
-
-    matrix.append(curr)
-
-matrix = np.matrix(matrix)
-print(matrix)
-print('---------')
-print(matrix.getT())
-print('---------')
-print(matrix * matrix.T)
+    e_mgr.append_matrix(matrix_m, result_start_cell)
+    e_mgr.save('test.xls')
