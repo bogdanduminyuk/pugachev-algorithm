@@ -14,6 +14,10 @@ def xl_cell_to_row_col(cell_str):
 
     range_parts = re.compile(r'(\$?)([A-Z]{1,3})(\$?)(\d+)')
     match = range_parts.match(cell_str)
+
+    if match is None:
+        raise ValueError("Cell match was not found")
+
     col_str = match.group(2)
     row_str = match.group(4)
 
