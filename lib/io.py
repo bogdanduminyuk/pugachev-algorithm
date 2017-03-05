@@ -9,12 +9,13 @@ from . import functions
 
 class ExcelManager:
     def __init__(self):
-        self.rb = None
-        self.wb = None
-        self.r_sheet = None
-        self.w_sheet = None
-        self.format = None
-        self.sheets = None
+        # rb - read book, wb - write book
+        # r_sheet - read sheet, w_sheet - write sheet
+        self.rb, self.wb = None, None
+        self.sheets, self.r_sheet, self.w_sheet = None, None, None
+
+        self.format = xlwt.XFStyle()
+        self.format.num_format_str = '0.00'
 
     def open(self, filename, sheet_index):
         """
@@ -46,8 +47,6 @@ class ExcelManager:
         end_row += 1
         end_col += 1
 
-        # TODO: try cell.type
-
         data = []
         for row_num in range(start_row, end_row):
             row = self.r_sheet.row_values(row_num, start_col, end_col)
@@ -64,8 +63,6 @@ class ExcelManager:
         :return: None
         """
         start_row, start_col = functions.xl_cell_to_row_col(start_cell)
-        style = xlwt.XFStyle()
-        style.num_format_str = '0.00'
 
         for row_num, row in enumerate(matrix.tolist(), start=start_row):
             for col_num, col_element in enumerate(row, start=start_col):
