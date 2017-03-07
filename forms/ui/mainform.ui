@@ -251,6 +251,19 @@
      <string>Расчитать</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_filename">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>13</y>
+      <width>221</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -261,9 +274,94 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="action"/>
+    <addaction name="action_2"/>
+    <addaction name="separator"/>
+    <addaction name="action_4"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="action_5"/>
+    <addaction name="action_6"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action">
+   <property name="text">
+    <string>Открыть</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>Закрыть</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>Помощь</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F1</string>
+   </property>
+  </action>
+  <action name="action_6">
+   <property name="text">
+    <string>О программе</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action_4</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>319</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_choose_file</sender>
+   <signal>clicked()</signal>
+   <receiver>action</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>190</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

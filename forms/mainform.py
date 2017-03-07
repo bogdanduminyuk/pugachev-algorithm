@@ -2,13 +2,21 @@
 
 # Form implementation generated from reading ui file 'forms/ui/mainform.ui'
 #
-# Created by: PyQt5 UI code generator 5.8
+# Created by: PyQt5 UI code generator 5.8.1
 #
 # WARNING! All changes made in this file will be lost!
+import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
+
+from lib import PugachevMethod
+
 
 class Ui_MainWindow(object):
+    def __init__(self):
+        self.method = PugachevMethod()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
@@ -73,17 +81,48 @@ class Ui_MainWindow(object):
         self.btn_calc.setEnabled(False)
         self.btn_calc.setGeometry(QtCore.QRect(240, 360, 141, 41))
         self.btn_calc.setObjectName("btn_calc")
+        self.label_filename = QtWidgets.QLabel(self.centralwidget)
+        self.label_filename.setGeometry(QtCore.QRect(260, 15, 107, 13))
+        self.label_filename.setText("")
+        self.label_filename.setObjectName("label_filename")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 21))
         self.menubar.setObjectName("menubar")
+        self.menu = QtWidgets.QMenu(self.menubar)
+        self.menu.setObjectName("menu")
+        self.menu_2 = QtWidgets.QMenu(self.menubar)
+        self.menu_2.setObjectName("menu_2")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.action = QtWidgets.QAction(MainWindow)
+        self.action.setObjectName("action")
+        self.action_2 = QtWidgets.QAction(MainWindow)
+        self.action_2.setObjectName("action_2")
+        self.action_4 = QtWidgets.QAction(MainWindow)
+        self.action_4.setObjectName("action_4")
+        self.action_5 = QtWidgets.QAction(MainWindow)
+        self.action_5.setObjectName("action_5")
+        self.action_6 = QtWidgets.QAction(MainWindow)
+        self.action_6.setObjectName("action_6")
+        self.menu.addAction(self.action)
+        self.menu.addAction(self.action_2)
+        self.menu.addSeparator()
+        self.menu.addAction(self.action_4)
+        self.menu_2.addAction(self.action_5)
+        self.menu_2.addAction(self.action_6)
+        self.menubar.addAction(self.menu.menuAction())
+        self.menubar.addAction(self.menu_2.menuAction())
 
         self.retranslateUi(MainWindow)
+        self.action_4.triggered.connect(MainWindow.close)
+        self.btn_choose_file.clicked.connect(self.action.trigger)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.action.triggered.connect(self.open_file)
+        self.action_2.triggered.connect(self.close_file)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -100,4 +139,30 @@ class Ui_MainWindow(object):
         self.label_6.setText(_translate("MainWindow", "TopLeft:"))
         self.groupBox_4.setTitle(_translate("MainWindow", "Ячейка результата:"))
         self.btn_calc.setText(_translate("MainWindow", "Расчитать"))
+        self.menu.setTitle(_translate("MainWindow", "Файл"))
+        self.menu_2.setTitle(_translate("MainWindow", "Справка"))
+        self.action.setText(_translate("MainWindow", "Открыть"))
+        self.action.setShortcut(_translate("MainWindow", "Ctrl+O"))
+        self.action_2.setText(_translate("MainWindow", "Закрыть"))
+        self.action_2.setShortcut(_translate("MainWindow", "Ctrl+F"))
+        self.action_4.setText(_translate("MainWindow", "Выход"))
+        self.action_5.setText(_translate("MainWindow", "Помощь"))
+        self.action_5.setShortcut(_translate("MainWindow", "Ctrl+F1"))
+        self.action_6.setText(_translate("MainWindow", "О программе"))
+
+    def open_file(self):
+        filename, _ = QFileDialog.getOpenFileName(None, "Открыть файл", "", "xls-файлы (*.xls)")
+
+        if filename:
+            sheets = self.method.open_file(filename)
+
+            self.label_filename.setText(os.path.basename(filename))
+            self.comboBox_list.addItems(sheets)
+            self.groupBox_data.setEnabled(True)
+
+    def close_file(self):
+        self.method = PugachevMethod()
+        self.comboBox_list.clear()
+        self.groupBox_data.setEnabled(False)
+        self.label_filename.setText('')
 
