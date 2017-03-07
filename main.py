@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from lib import io
+from lib import PugachevMethod
 
 
 # input vars
@@ -13,12 +13,17 @@ result_start_cell = 'B1478'
 
 # program
 if __name__ == "__main__":
-    e_mgr = io.ExcelManager()
-    e_mgr.open(filename)
-    sheets_count = e_mgr.get_sheets_count()
-    e_mgr.set_sheet(0)
-    matrix = e_mgr.get_array(start_cell, end_cell)
-    matrix_m = matrix * matrix.T
+    method = PugachevMethod()
+    sheets_count = method.open_file(filename)
 
-    e_mgr.append_matrix(matrix_m, result_start_cell)
-    e_mgr.save('test.xls')
+    # here chosen 0 sheet from range(0, sheet_count)
+    current_sheet_index = 0
+    large_sample = 'B6', 'AL1387'
+    small_sample = 'B1397', 'AL1474'
+    result_start_cell = 'B1478'
+
+    method.calculate(large_sample, small_sample,
+                     worksheet_index=current_sheet_index,
+                     result_start_cell=result_start_cell)
+
+    # matrix_m = matrix * matrix.T
