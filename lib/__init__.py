@@ -17,7 +17,7 @@ class PugachevMethod:
         self.filename = filename
         self.excel_mgr.open(filename)
 
-        return self.excel_mgr.get_sheets_count()
+        return self.excel_mgr.get_sheets()
 
     def set_sheet(self, index):
         self.excel_mgr.set_sheet(index)

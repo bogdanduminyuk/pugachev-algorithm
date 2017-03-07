@@ -17,9 +17,9 @@ class ExcelManager:
         self.format = xlwt.XFStyle()
         self.format.num_format_str = '0.00'
 
-    def get_sheets_count(self):
+    def get_sheets(self):
         if self.rb is not None:
-            return self.rb.sheets()
+            return self.rb.sheet_names()
 
     def open(self, filename):
         """
