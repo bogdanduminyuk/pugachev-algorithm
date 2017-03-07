@@ -12,10 +12,14 @@ class ExcelManager:
         # rb - read book, wb - write book
         # r_sheet - read sheet, w_sheet - write sheet
         self.rb, self.wb = None, None
-        self.sheets, self.r_sheet, self.w_sheet = None, None, None
+        self.r_sheet, self.w_sheet = None, None
 
         self.format = xlwt.XFStyle()
         self.format.num_format_str = '0.00'
+
+    def get_sheets_count(self):
+        if self.rb is not None:
+            return self.rb.sheets()
 
     def open(self, filename):
         """
@@ -25,7 +29,6 @@ class ExcelManager:
         :return: None
         """
         self.rb = xlrd.open_workbook(filename, formatting_info=True)
-        self.sheets = self.rb.sheets()
         self.wb = copy.copy(self.rb)
 
     def set_sheet(self, sheet_index):

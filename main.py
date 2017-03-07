@@ -14,7 +14,9 @@ result_start_cell = 'B1478'
 # program
 if __name__ == "__main__":
     e_mgr = io.ExcelManager()
-    e_mgr.open(filename, sheet_index)
+    e_mgr.open(filename)
+    sheets_count = e_mgr.get_sheets_count()
+    e_mgr.set_sheet(0)
     matrix = e_mgr.get_array(start_cell, end_cell)
     matrix_m = matrix * matrix.T
 
