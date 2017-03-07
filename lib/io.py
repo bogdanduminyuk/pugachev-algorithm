@@ -17,17 +17,18 @@ class ExcelManager:
         self.format = xlwt.XFStyle()
         self.format.num_format_str = '0.00'
 
-    def open(self, filename, sheet_index):
+    def open(self, filename):
         """
         Opens filename. Gets necessary info and keeps it in self.vars.
 
         :param filename: name of the excel book
-        :param sheet_index: sheet number in the book
         :return: None
         """
         self.rb = xlrd.open_workbook(filename, formatting_info=True)
         self.sheets = self.rb.sheets()
         self.wb = copy.copy(self.rb)
+
+    def set_sheet(self, sheet_index):
         self.r_sheet = self.rb.sheet_by_index(sheet_index)
         self.w_sheet = self.wb.get_sheet(sheet_index)
 
