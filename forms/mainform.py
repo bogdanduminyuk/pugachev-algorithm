@@ -5,18 +5,11 @@
 # Created by: PyQt5 UI code generator 5.8.1
 #
 # WARNING! All changes made in this file will be lost!
-import os
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QMessageBox
-
-from lib import PugachevMethod
+from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_MainWindow(object):
-    def __init__(self):
-        self.method = PugachevMethod()
-
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
@@ -121,9 +114,6 @@ class Ui_MainWindow(object):
         self.btn_choose_file.clicked.connect(self.action.trigger)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.action.triggered.connect(self.open_file)
-        self.action_2.triggered.connect(self.close_file)
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Метод Пугачева"))
@@ -150,19 +140,5 @@ class Ui_MainWindow(object):
         self.action_5.setShortcut(_translate("MainWindow", "Ctrl+F1"))
         self.action_6.setText(_translate("MainWindow", "О программе"))
 
-    def open_file(self):
-        filename, _ = QFileDialog.getOpenFileName(None, "Открыть файл", "", "xls-файлы (*.xls)")
 
-        if filename:
-            sheets = self.method.open_file(filename)
-
-            self.label_filename.setText(os.path.basename(filename))
-            self.comboBox_list.addItems(sheets)
-            self.groupBox_data.setEnabled(True)
-
-    def close_file(self):
-        self.method = PugachevMethod()
-        self.comboBox_list.clear()
-        self.groupBox_data.setEnabled(False)
-        self.label_filename.setText('')
 

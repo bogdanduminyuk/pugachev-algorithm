@@ -3,7 +3,7 @@
 import sys
 import os
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from forms.mainform import Ui_MainWindow
+from forms.ui_mainwindow_realization import UiMainWindowRealization
 
 if __name__ == "__main__":
     os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = \
@@ -13,7 +13,7 @@ if __name__ == "__main__":
         app = QApplication(sys.argv)
         window = QMainWindow()
 
-        ui = Ui_MainWindow()
+        ui = UiMainWindowRealization()
         ui.setupUi(window)
         window.show()
 
