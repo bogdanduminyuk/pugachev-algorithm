@@ -27,10 +27,18 @@ class PugachevMethod:
         self.excel_mgr.set_sheet(worksheet)
 
         large_matrix = self.excel_mgr.get_array(*large_coords)
-        small_matrinx = self.excel_mgr.get_array(*small_coords)
+        small_matrix = self.excel_mgr.get_array(*small_coords)
         result_lambda_i0 = np.matrix([i for i in range(0, 500, 10)])
 
+        print(self.get_m(large_matrix, 7, 0))
         # do smth
         pass
 
         self.excel_mgr.append_matrix(result_lambda_i0, result_start_cell)
+
+    @staticmethod
+    def get_m(large_matrix, row_idx, col_idx):
+        m_ast = np.mean(large_matrix[0:row_idx, col_idx])
+        m = np.mean(large_matrix[row_idx:, col_idx])
+        return m, m_ast
+
