@@ -22,7 +22,7 @@ class UiMainWindowRealization(Ui_MainWindow):
         self.lineEdit_top_left.setText('B6')
         self.lineEdit_right_bottom.setText('AL1387')
         self.lineEdit_top_left_2.setText('B1397')
-        self.lineEdit__right_bottom.setText('B1478')
+        self.lineEdit__right_bottom.setText('AL1474')
 
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(None, "Открыть файл", "", "xls-файлы (*.xls)")
@@ -34,6 +34,8 @@ class UiMainWindowRealization(Ui_MainWindow):
             self.comboBox_list.addItems(sheets)
             self.groupBox_data.setEnabled(True)
             self.btn_calc.setEnabled(True)
+
+            self.statusbar.showMessage("Открытие файла прошло успешно!")
 
     def close_file(self):
         self.method = PugachevMethod()
@@ -51,4 +53,8 @@ class UiMainWindowRealization(Ui_MainWindow):
         self.method.calculate(large_sample, small_sample,
                               worksheet=worksheet,
                               result_start_cell=result_cell)
+
+        filename, _ = QFileDialog.getSaveFileName(None, "Сохранить как", "", "xls-файлы (*.xls)")
+        self.method.excel_mgr.save(filename)
+        self.statusbar.showMessage("Файл {} был успешно сохранен!".format(filename))
 

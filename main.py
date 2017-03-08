@@ -1,29 +1,24 @@
 # coding: utf-8
 
-from lib import PugachevMethod
+import sys
+import os
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from forms.ui_mainwindow_realization import UiMainWindowRealization
 
-
-# input vars
-filename = 'data/pugachev.xls'
-start_cell = 'B6'
-end_cell = 'D11'
-sheet_index = 0
-result_start_cell = 'B1478'
-
-
-# program
 if __name__ == "__main__":
-    method = PugachevMethod()
-    sheets_count = method.open_file(filename)
+    os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = \
+        "E:\Cloud.Mail.ru\Учеба\WorkSpace\Python\Pugachev\env\Lib\site-packages\PyQt5\Qt\plugins\platforms"
 
-    # here chosen 0 sheet from range(0, sheet_count)
-    current_sheet_index = 0
-    large_sample = 'B6', 'AL1387'
-    small_sample = 'B1397', 'AL1474'
-    result_start_cell = 'B1478'
+    try:
+        app = QApplication(sys.argv)
+        window = QMainWindow()
 
-    method.calculate(large_sample, small_sample,
-                     worksheet_index=current_sheet_index,
-                     result_start_cell=result_start_cell)
+        ui = UiMainWindowRealization()
+        ui.setupUi(window)
+        window.show()
 
-    # matrix_m = matrix * matrix.T
+        sys.exit(app.exec_())
+
+    except Exception as e:
+        print(type(e))
+        print(e)

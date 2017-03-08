@@ -2,6 +2,7 @@
 from .io import ExcelManager
 import numpy as np
 
+
 class PugachevMethod:
     def __init__(self):
         self.filename = ''
@@ -33,4 +34,3 @@ class PugachevMethod:
         pass
 
         self.excel_mgr.append_matrix(result_lambda_i0, result_start_cell)
-        self.excel_mgr.save('test.xls')
