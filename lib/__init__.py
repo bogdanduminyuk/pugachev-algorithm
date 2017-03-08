@@ -22,8 +22,8 @@ class PugachevMethod:
     def set_sheet(self, index):
         self.excel_mgr.set_sheet(index)
 
-    def calculate(self, large_coords, small_coords, worksheet_index, result_start_cell):
-        self.excel_mgr.set_sheet(worksheet_index)
+    def calculate(self, large_coords, small_coords, worksheet, result_start_cell):
+        self.excel_mgr.set_sheet(worksheet)
 
         large_matrix = self.excel_mgr.get_array(*large_coords)
         small_matrinx = self.excel_mgr.get_array(*small_coords)

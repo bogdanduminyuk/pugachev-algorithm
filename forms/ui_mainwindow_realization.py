@@ -16,6 +16,13 @@ class UiMainWindowRealization(Ui_MainWindow):
 
         self.action.triggered.connect(self.open_file)
         self.action_2.triggered.connect(self.close_file)
+        self.btn_calc.clicked.connect(self.calc)
+
+        self.lineEdit_5.setText('B1478')
+        self.lineEdit_top_left.setText('B6')
+        self.lineEdit_right_bottom.setText('AL1387')
+        self.lineEdit_top_left_2.setText('B1397')
+        self.lineEdit__right_bottom.setText('B1478')
 
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(None, "Открыть файл", "", "xls-файлы (*.xls)")
@@ -26,10 +33,22 @@ class UiMainWindowRealization(Ui_MainWindow):
             self.label_filename.setText(os.path.basename(filename))
             self.comboBox_list.addItems(sheets)
             self.groupBox_data.setEnabled(True)
+            self.btn_calc.setEnabled(True)
 
     def close_file(self):
         self.method = PugachevMethod()
         self.comboBox_list.clear()
         self.groupBox_data.setEnabled(False)
+        self.btn_calc.setEnabled(False)
         self.label_filename.setText('')
+
+    def calc(self):
+        large_sample = self.lineEdit_top_left.text(), self.lineEdit_right_bottom.text()
+        small_sample = self.lineEdit_top_left_2.text(), self.lineEdit__right_bottom.text()
+        worksheet = self.comboBox_list.currentText()
+        result_cell = self.lineEdit_5.text()
+
+        self.method.calculate(large_sample, small_sample,
+                              worksheet=worksheet,
+                              result_start_cell=result_cell)
 

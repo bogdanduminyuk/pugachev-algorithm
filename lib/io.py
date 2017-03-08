@@ -1,4 +1,5 @@
 # coding: utf-8
+import itertools
 import numpy as np
 import xlrd
 import xlwt
@@ -13,6 +14,8 @@ class ExcelManager:
         # r_sheet - read sheet, w_sheet - write sheet
         self.rb, self.wb = None, None
         self.r_sheet, self.w_sheet = None, None
+        self.r_sheets = {}
+        self.w_sheets = {}
 
         self.format = xlwt.XFStyle()
         self.format.num_format_str = '0.00'
@@ -31,9 +34,23 @@ class ExcelManager:
         self.rb = xlrd.open_workbook(filename, formatting_info=True)
         self.wb = copy.copy(self.rb)
 
-    def set_sheet(self, sheet_index):
-        self.r_sheet = self.rb.sheet_by_index(sheet_index)
-        self.w_sheet = self.wb.get_sheet(sheet_index)
+        try:
+            for idx in itertools.count():
+                sheet = self.rb.sheet_by_index(idx)
+                self.r_sheets[sheet.name] = sheet
+        except IndexError:
+            pass
+
+        try:
+            for idx in itertools.count():
+                sheet = self.wb.get_sheet(idx)
+                self.w_sheets[sheet.name] = sheet
+        except IndexError:
+            pass
+
+    def set_sheet(self, sheet_name):
+        self.r_sheet = self.r_sheets[sheet_name]
+        self.w_sheet = self.w_sheets[sheet_name]
 
     def get_array(self, start_cell, end_cell):
         """
