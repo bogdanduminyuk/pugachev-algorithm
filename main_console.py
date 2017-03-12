@@ -10,3 +10,4 @@ sheet = 'Лист1'
 method = PugachevMethod()
 method.open_file(filename)
 method.calculate(large_sample, small_sample, sheet, res_cell)
+method.excel_mgr.save('test.xls')
