@@ -20,9 +20,6 @@ class PugachevMethod:
 
         return self.excel_mgr.get_sheets()
 
-    def set_sheet(self, index):
-        self.excel_mgr.set_sheet(index)
-
     def calculate(self, large_coords, small_coords, worksheet, result_start_cell):
         self.excel_mgr.set_sheet(worksheet)
 
