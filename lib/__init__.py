@@ -25,33 +25,31 @@ class PugachevMethod:
 
         large_matrix = self.excel_mgr.get_array(*large_coords)
         small_matrix = self.excel_mgr.get_array(*small_coords)
-        result_lambda_i0 = np.matrix([i for i in range(0, 500, 10)])
+        result_lambda_i0 = []
 
-        print(self.get_kss(large_matrix, small_matrix))
-        # do smth
-        pass
+        for col in range(large_matrix.shape[1]):
+            small_col = small_matrix[:, col]
+            large_col = large_matrix[:, col]
+            curr_lambda_i0 = self.get_lambda_i(large_col,small_col)
+            result_lambda_i0.append(curr_lambda_i0)
 
+        result_lambda_i0 = np.matrix(result_lambda_i0)
         self.excel_mgr.append_matrix(result_lambda_i0, result_start_cell)
 
     @staticmethod
-    def get_m(large_matrix, row_idx, col_idx):
-        m_ast = np.mean(large_matrix[0:row_idx, col_idx])
-        m = np.mean(large_matrix[row_idx:, col_idx])
-        return m, m_ast
+    def get_lambda_i(large_col, small_col):
+        m = np.mean(large_col[7:])
+        curr_lambda = np.mean(large_col)
+        kss = PugachevMethod.get_K(small_col, small_col, m)
+        krs = PugachevMethod.get_K(large_col, small_col, m)
+
+        return curr_lambda - krs*kss
 
     @staticmethod
-    def get_kss(large_matrix, small_matrix):
-        count = 0
-        sum = 0.0
-
-        # TODO: debug it
-        for i in range(small_matrix.shape[1]):
-            m, m_ast = PugachevMethod.get_m(large_matrix, 7, i)
-            small_matrix_col = small_matrix[:, i]
-            first_multiplier = small_matrix_col - m
-            second_multiplier = first_multiplier.getT()
-            mult = first_multiplier * second_multiplier
-            count += 1
-
-        return sum/count
+    def get_K(first_col, second_col, m):
+        first = first_col - m
+        second = second_col - m
+        matrix = first * second.getT()
+        diagonal = matrix.diagonal()
+        return np.mean(diagonal) / diagonal.size
 
