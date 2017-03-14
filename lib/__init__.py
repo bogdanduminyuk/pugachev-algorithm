@@ -48,8 +48,9 @@ class PugachevMethod:
     @staticmethod
     def get_K(first_col, second_col, m):
         first = first_col - m
-        second = second_col - m
+        """second = second_col - m
         matrix = first * second.getT()
         diagonal = matrix.diagonal()
-        return np.mean(diagonal) / diagonal.size
+        return np.mean(diagonal)"""
+        return np.mean(first)
 
