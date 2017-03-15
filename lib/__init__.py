@@ -38,7 +38,9 @@ class PugachevMethod:
 
     @staticmethod
     def get_lambda_i(large_col, small_col):
-        m = np.mean(large_col[7:])
+        large_col = PugachevMethod.filtrate_column(large_col, 0)
+        small_col = PugachevMethod.filtrate_column(small_col, 0)
+        m = np.mean(large_col[:7])
         curr_lambda = np.mean(large_col)
         kss = PugachevMethod.get_K(small_col, small_col, m)
         krs = PugachevMethod.get_K(large_col, small_col, m)
@@ -47,10 +49,24 @@ class PugachevMethod:
 
     @staticmethod
     def get_K(first_col, second_col, m):
+        # first = first_col.tolist()
+
         first = first_col - m
         """second = second_col - m
         matrix = first * second.getT()
         diagonal = matrix.diagonal()
         return np.mean(diagonal)"""
         return np.mean(first)
+
+    @staticmethod
+    def filtrate_column(column, value):
+        indices = []
+        for i in range(len(column)):
+            if column[i][0] == value:
+                indices.append(i)
+
+        narray = np.delete(column, indices)
+
+        return np.asmatrix(narray)
+
 
