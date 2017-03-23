@@ -29,9 +29,10 @@ class PugachevMethod:
         result_lambda_i0 = []
 
         for col in range(large_matrix.shape[1]):
-            small_col = small_matrix[:, col]
-            large_col = large_matrix[:, col]
-            m = np.mean(mu_matrix[:, col])
+            small_col = PugachevMethod.filtrate_column(small_matrix[:, col], 0)
+            large_col = PugachevMethod.filtrate_column(large_matrix[:, col], 0)
+            mu_col = PugachevMethod.filtrate_column(mu_matrix[:, col], 0)
+            m = np.mean(mu_col)
             print("current mu:", m)
             curr_lambda_i0 = self.get_lambda_i(large_col,small_col, m)
             result_lambda_i0.append(curr_lambda_i0)
@@ -41,8 +42,8 @@ class PugachevMethod:
 
     @staticmethod
     def get_lambda_i(large_col, small_col, m):
-        large_col = PugachevMethod.filtrate_column(large_col, 0)
-        small_col = PugachevMethod.filtrate_column(small_col, 0)
+        # large_col = PugachevMethod.filtrate_column(large_col, 0)
+        # small_col = PugachevMethod.filtrate_column(small_col, 0)
 
         curr_lambda = np.mean(large_col)
         kss = PugachevMethod.get_K(small_col, small_col, m)
