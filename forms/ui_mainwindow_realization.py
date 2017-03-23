@@ -1,9 +1,10 @@
 # coding: utf-8
 import os
 
-from PyQt5.QtWidgets import QFileDialog, QMessageBox
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QDialog
 
 from forms.mainform import Ui_MainWindow
+from forms.about import Ui_Dialog
 from lib import PugachevMethod
 
 
@@ -16,6 +17,7 @@ class UiMainWindowRealization(Ui_MainWindow):
 
         self.action.triggered.connect(self.open_file)
         self.action_2.triggered.connect(self.close_file)
+        self.action_6.triggered.connect(self.about)
         self.btn_calc.clicked.connect(self.calc)
 
         self.lineEdit_5.setText('B1478')
@@ -61,4 +63,14 @@ class UiMainWindowRealization(Ui_MainWindow):
         filename, _ = QFileDialog.getSaveFileName(None, "Сохранить как", "", "xls-файлы (*.xls)")
         self.method.excel_mgr.save(filename)
         self.statusbar.showMessage("Файл {} был успешно сохранен!".format(filename))
+
+    def about(self):
+        self.statusbar.showMessage('Вызвано диалоговое окно "О программе"')
+        about_window = QDialog()
+        ui = Ui_Dialog()
+        ui.setupUi(about_window)
+
+        about_window.setModal(True)
+        about_window.exec()
+        self.statusbar.showMessage('')
 
