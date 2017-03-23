@@ -51,10 +51,12 @@ class UiMainWindowRealization(Ui_MainWindow):
         small_sample = self.lineEdit_top_left_2.text(), self.lineEdit__right_bottom.text()
         worksheet = self.comboBox_list.currentText()
         result_cell = self.lineEdit_5.text()
+        mu_coeff = self.lineEdit_top_left_4.text(), self.lineEdit_right_bottom_3.text()
 
         self.method.calculate(large_sample, small_sample,
                               worksheet=worksheet,
-                              result_start_cell=result_cell)
+                              result_start_cell=result_cell,
+                              mu_matrix=mu_coeff)
 
         filename, _ = QFileDialog.getSaveFileName(None, "Сохранить как", "", "xls-файлы (*.xls)")
         self.method.excel_mgr.save(filename)

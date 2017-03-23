@@ -20,7 +20,7 @@ class PugachevMethod:
 
         return self.excel_mgr.get_sheets()
 
-    def calculate(self, large_coords, small_coords, worksheet, result_start_cell):
+    def calculate(self, large_coords, small_coords, worksheet, result_start_cell, mu_matrix):
         self.excel_mgr.set_sheet(worksheet)
 
         large_matrix = self.excel_mgr.get_array(*large_coords)
