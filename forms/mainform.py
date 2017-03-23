@@ -6,14 +6,13 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtWidgets
-
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
-        MainWindow.resize(640, 471)
+        MainWindow.resize(640, 493)
         MainWindow.setMinimumSize(QtCore.QSize(400, 400))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 1000))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -26,7 +25,7 @@ class Ui_MainWindow(object):
         self.btn_choose_file.setObjectName("btn_choose_file")
         self.groupBox_data = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_data.setEnabled(False)
-        self.groupBox_data.setGeometry(QtCore.QRect(20, 50, 561, 291))
+        self.groupBox_data.setGeometry(QtCore.QRect(20, 50, 561, 311))
         self.groupBox_data.setObjectName("groupBox_data")
         self.label_2 = QtWidgets.QLabel(self.groupBox_data)
         self.label_2.setGeometry(QtCore.QRect(10, 23, 31, 16))
@@ -35,7 +34,7 @@ class Ui_MainWindow(object):
         self.comboBox_list.setGeometry(QtCore.QRect(70, 20, 121, 22))
         self.comboBox_list.setObjectName("comboBox_list")
         self.groupBox_large_sample = QtWidgets.QGroupBox(self.groupBox_data)
-        self.groupBox_large_sample.setGeometry(QtCore.QRect(40, 70, 211, 101))
+        self.groupBox_large_sample.setGeometry(QtCore.QRect(40, 60, 211, 101))
         self.groupBox_large_sample.setObjectName("groupBox_large_sample")
         self.label_4 = QtWidgets.QLabel(self.groupBox_large_sample)
         self.label_4.setGeometry(QtCore.QRect(10, 61, 71, 16))
@@ -50,7 +49,7 @@ class Ui_MainWindow(object):
         self.lineEdit_right_bottom.setGeometry(QtCore.QRect(90, 60, 113, 20))
         self.lineEdit_right_bottom.setObjectName("lineEdit_right_bottom")
         self.groupBox_small_sample = QtWidgets.QGroupBox(self.groupBox_data)
-        self.groupBox_small_sample.setGeometry(QtCore.QRect(300, 70, 211, 101))
+        self.groupBox_small_sample.setGeometry(QtCore.QRect(290, 60, 211, 101))
         self.groupBox_small_sample.setObjectName("groupBox_small_sample")
         self.label_5 = QtWidgets.QLabel(self.groupBox_small_sample)
         self.label_5.setGeometry(QtCore.QRect(10, 61, 71, 16))
@@ -65,17 +64,32 @@ class Ui_MainWindow(object):
         self.lineEdit__right_bottom.setGeometry(QtCore.QRect(90, 60, 113, 20))
         self.lineEdit__right_bottom.setObjectName("lineEdit__right_bottom")
         self.groupBox_4 = QtWidgets.QGroupBox(self.groupBox_data)
-        self.groupBox_4.setGeometry(QtCore.QRect(170, 190, 211, 80))
+        self.groupBox_4.setGeometry(QtCore.QRect(290, 180, 211, 80))
         self.groupBox_4.setObjectName("groupBox_4")
         self.lineEdit_5 = QtWidgets.QLineEdit(self.groupBox_4)
         self.lineEdit_5.setGeometry(QtCore.QRect(40, 30, 141, 20))
         self.lineEdit_5.setObjectName("lineEdit_5")
+        self.groupBox_large_sample_2 = QtWidgets.QGroupBox(self.groupBox_data)
+        self.groupBox_large_sample_2.setGeometry(QtCore.QRect(40, 180, 211, 101))
+        self.groupBox_large_sample_2.setObjectName("groupBox_large_sample_2")
+        self.label_9 = QtWidgets.QLabel(self.groupBox_large_sample_2)
+        self.label_9.setGeometry(QtCore.QRect(10, 61, 71, 16))
+        self.label_9.setObjectName("label_9")
+        self.label_10 = QtWidgets.QLabel(self.groupBox_large_sample_2)
+        self.label_10.setGeometry(QtCore.QRect(30, 33, 47, 13))
+        self.label_10.setObjectName("label_10")
+        self.lineEdit_top_left_4 = QtWidgets.QLineEdit(self.groupBox_large_sample_2)
+        self.lineEdit_top_left_4.setGeometry(QtCore.QRect(90, 30, 113, 20))
+        self.lineEdit_top_left_4.setObjectName("lineEdit_top_left_4")
+        self.lineEdit_right_bottom_3 = QtWidgets.QLineEdit(self.groupBox_large_sample_2)
+        self.lineEdit_right_bottom_3.setGeometry(QtCore.QRect(90, 60, 113, 20))
+        self.lineEdit_right_bottom_3.setObjectName("lineEdit_right_bottom_3")
         self.btn_calc = QtWidgets.QPushButton(self.centralwidget)
         self.btn_calc.setEnabled(False)
-        self.btn_calc.setGeometry(QtCore.QRect(240, 360, 141, 41))
+        self.btn_calc.setGeometry(QtCore.QRect(240, 380, 141, 41))
         self.btn_calc.setObjectName("btn_calc")
         self.label_filename = QtWidgets.QLabel(self.centralwidget)
-        self.label_filename.setGeometry(QtCore.QRect(260, 15, 107, 13))
+        self.label_filename.setGeometry(QtCore.QRect(260, 13, 221, 16))
         self.label_filename.setText("")
         self.label_filename.setObjectName("label_filename")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -128,6 +142,9 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "RightBottom:"))
         self.label_6.setText(_translate("MainWindow", "TopLeft:"))
         self.groupBox_4.setTitle(_translate("MainWindow", "Ячейка результата:"))
+        self.groupBox_large_sample_2.setTitle(_translate("MainWindow", "Матрица коэффициента мью:"))
+        self.label_9.setText(_translate("MainWindow", "RightBottom:"))
+        self.label_10.setText(_translate("MainWindow", "TopLeft:"))
         self.btn_calc.setText(_translate("MainWindow", "Расчитать"))
         self.menu.setTitle(_translate("MainWindow", "Файл"))
         self.menu_2.setTitle(_translate("MainWindow", "Справка"))
@@ -139,6 +156,4 @@ class Ui_MainWindow(object):
         self.action_5.setText(_translate("MainWindow", "Помощь"))
         self.action_5.setShortcut(_translate("MainWindow", "Ctrl+F1"))
         self.action_6.setText(_translate("MainWindow", "О программе"))
-
-
 
