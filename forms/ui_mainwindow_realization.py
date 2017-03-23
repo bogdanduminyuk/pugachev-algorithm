@@ -23,6 +23,8 @@ class UiMainWindowRealization(Ui_MainWindow):
         self.lineEdit_right_bottom.setText('AL1387')
         self.lineEdit_top_left_2.setText('B1397')
         self.lineEdit__right_bottom.setText('AL1474')
+        self.lineEdit_top_left_4.setText('B6')
+        self.lineEdit_right_bottom_3.setText('AL1387')
 
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(None, "Открыть файл", "", "xls-файлы (*.xls)")
