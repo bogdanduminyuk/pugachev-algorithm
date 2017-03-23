@@ -56,7 +56,7 @@ class UiMainWindowRealization(Ui_MainWindow):
         self.method.calculate(large_sample, small_sample,
                               worksheet=worksheet,
                               result_start_cell=result_cell,
-                              mu_matrix=mu_coeff)
+                              mu_matrix_coeffs=mu_coeff)
 
         filename, _ = QFileDialog.getSaveFileName(None, "Сохранить как", "", "xls-файлы (*.xls)")
         self.method.excel_mgr.save(filename)
