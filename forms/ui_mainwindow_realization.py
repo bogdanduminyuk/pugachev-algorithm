@@ -19,6 +19,7 @@ class UiMainWindowRealization(Ui_MainWindow):
         self.action_2.triggered.connect(self.close_file)
         self.action_6.triggered.connect(self.about)
         self.btn_calc.clicked.connect(self.calc)
+        self.action_5.triggered.connect(self.help)
 
         self.lineEdit_5.setText('B1478')
         self.lineEdit_top_left.setText('B6')
@@ -73,4 +74,7 @@ class UiMainWindowRealization(Ui_MainWindow):
         about_window.setModal(True)
         about_window.exec()
         self.statusbar.showMessage('')
+
+    def help(self):
+        os.system("start help.pdf")
 
